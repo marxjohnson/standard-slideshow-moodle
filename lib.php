@@ -44,7 +44,12 @@ function slideshow_add_instance($slideshow) {
     }
     if (!file_exists($CFG->dataroot.'/s5/'.$slideshow->id.'.html')) {
         $template = file_get_contents($CFG->dirroot.'/mod/slideshow/s5/s5-template.html');
-        $skeleton = str_replace('{name}', $slideshow->name, str_replace('{fullname}', fullname($USER), str_replace('{theme}', $slideshow->theme, str_replace('{date}', time(), $template))));
+        $skeleton = str_replace('{name}', $slideshow->name, 
+                    str_replace('{fullname}', fullname($USER),
+                    str_replace('{theme}', $slideshow->theme,
+                    str_replace('{date}', time(),
+                    str_replace('{wwwroot}', $CFG->wwwroot,
+                    $template)))));
         $success = $success && file_put_contents($CFG->dataroot.'/s5/'.$slideshow->id.'.html', $skeleton);
     }
 
