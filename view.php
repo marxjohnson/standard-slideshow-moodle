@@ -38,13 +38,13 @@ if ($id) {
         print_error('coursemisconf');
     }
 
-    if (! $label = $DB->get_record("slideshow", array("id"=>$cm->instance))) {
+    if (! $slideshow = $DB->get_record("slideshow", array("id"=>$cm->instance))) {
         print_error('invalidcoursemodule');
     }
 
 } else {
     $PAGE->set_url('/mod/slideshow/index.php', array('l'=>$l));
-    if (! $label = $DB->get_record("slideshow", array("id"=>$l))) {
+    if (! $slideshow = $DB->get_record("slideshow", array("id"=>$l))) {
         print_error('invalidcoursemodule');
     }
     if (! $course = $DB->get_record("course", array("id"=>$label->course)) ){
@@ -56,3 +56,11 @@ if ($id) {
 }
 
 require_login($course, true, $cm);
+
+echo $OUTPUT->header();
+
+$url = new moodle_url('/mod/slideshow/display.php', array('id' => $cm->id));
+$html = html_writer::tag('iframe', '', array('src' => $url->out()));
+echo $html;
+
+echo $OUTPUT->footer($course);
