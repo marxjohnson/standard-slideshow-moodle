@@ -25,3 +25,4 @@
 
 $string['modulename'] = 'Slideshow';
 $string['modulenameplural'] = 'Slideshows';
+$string['selecttheme'] = 'Select Theme';

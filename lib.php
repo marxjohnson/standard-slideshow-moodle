@@ -35,9 +35,24 @@
  * @return bool|int
  */
 function slideshow_add_instance($slideshow) {
-    global $DB;
+    global $DB, $CFG, $USER;
 
-    return $DB->insert_record('slideshow', $slideshow);
+    $slideshow->id = $DB->insert_record('slideshow', $slideshow);
+    $success = $slideshow->id;
+    if (!file_exists($CFG->dataroot.'/s5')) {
+        mkdir($CFG->dataroot.'/s5');
+    }
+    if (!file_exists($CFG->dataroot.'/s5/'.$slideshow->id.'.html')) {
+        $template = file_get_contents($CFG->dirroot.'/mod/slideshow/s5/s5-template.html');
+        $skeleton = str_replace('{name}', $slideshow->name, str_replace('{fullname}', fullname($USER), str_replace('{theme}', $slideshow->theme, str_replace('{date}', time(), $template))));
+        $success = $success && file_put_contents($CFG->dataroot.'/s5/'.$slideshow->id.'.html', $skeleton);
+    }
+
+    if ($success) {
+        return $slideshow->id;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -173,7 +188,7 @@ function slideshow_supports($feature) {
         case FEATURE_GROUPS:                  return false;
         case FEATURE_GROUPINGS:               return false;
         case FEATURE_GROUPMEMBERSONLY:        return true;
-        case FEATURE_MOD_INTRO:               return true;
+        case FEATURE_MOD_INTRO:               return false;
         case FEATURE_COMPLETION_TRACKS_VIEWS: return true;
         case FEATURE_GRADE_HAS_GRADE:         return false;
         case FEATURE_GRADE_OUTCOMES:          return false;

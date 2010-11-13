@@ -30,11 +30,21 @@ require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 class mod_slideshow_mod_form extends moodleform_mod {
 
     function definition() {
+        global $CFG;
 
         $mform = $this->_form;
 
         $mform->addElement('header', 'settings');
         $mform->addElement('text', 'name', get_string('name'));
+
+        $list = scandir($CFG->dirroot.'/mod/slideshow/s5/ui');
+        $themes = array();
+        foreach($list as $filename) {
+            if (substr($filename, 0, 1) != '.') {
+                $themes[$filename] = $filename;
+            }
+        }
+        $mform->addElement('select', 'theme', get_string('selecttheme', 'slideshow'), $themes);
         
         $this->standard_coursemodule_elements();
 
