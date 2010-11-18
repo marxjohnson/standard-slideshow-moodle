@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines version number of slideshow
+ * Defines the form for editing slides
  *
  * @package    mod
  * @subpackage slideshow
@@ -23,9 +23,25 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die;
+require_once($CFG->libdir.'/formslib.php');
 
-$module->version  = 2010111301;  // The current module version (Date: YYYYMMDDXX)
-$module->requires = 2010080300;  // Requires this Moodle version
-$module->cron     = 0;           // Period for cron to check this module (secs)
+class slide_edit_form extends moodleform {
+    public function definition() {
+        $mform = $this->_form;
 
+        $mform->addElement('hidden', 'id');
+        $mform->addElement('hidden', 'slide');
+        $mform->addElement('header', 'editslide', get_string('editslides', 'slideshow'));
+        $mform->addElement('htmleditor', 'slidehtml', get_string('slide', 'slideshow'));
+
+        $buttongroup = array();
+        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandedit', 'slideshow'));
+        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandview', 'slideshow'));
+        $mform->addGroup($buttongroup, 'submits', '&nbsp;');
+    }
+
+    public function process($data) {
+        
+    }
+}
+?>

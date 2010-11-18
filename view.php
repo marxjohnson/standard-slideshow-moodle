@@ -47,20 +47,25 @@ if ($id) {
     if (! $slideshow = $DB->get_record("slideshow", array("id"=>$l))) {
         print_error('invalidcoursemodule');
     }
-    if (! $course = $DB->get_record("course", array("id"=>$label->course)) ){
+    if (! $course = $DB->get_record("course", array("id"=>$slideshow->course)) ){
         print_error('coursemisconf');
     }
-    if (! $cm = get_coursemodule_from_instance("slideshow", $label->id, $course->id)) {
+    if (! $cm = get_coursemodule_from_instance("slideshow", $slideshow->id, $course->id)) {
         print_error('invalidcoursemodule');
     }
 }
-
+$context = get_context_instance(CONTEXT_MODULE, $slideshow->id);
 require_login($course, true, $cm);
+require_capability('mod/slideshow:view', $context);
 
 echo $OUTPUT->header();
 
 $url = new moodle_url('/mod/slideshow/display.php', array('id' => $cm->id));
 $html = html_writer::tag('iframe', '', array('src' => $url->out()));
 echo $html;
+if (has_capability('mod/slideshow:edit', $context)) {
+    $url = new moodle_url('/mod/slideshow/edit.php', array('id' => $cm->id));
+    echo $OUTPUT->single_button($url, get_string('editslides', 'slideshow'), 'get');
+}
 
 echo $OUTPUT->footer($course);

@@ -23,6 +23,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['editslides'] = 'Edit Slides';
 $string['modulename'] = 'Slideshow';
 $string['modulenameplural'] = 'Slideshows';
+$string['saveandview'] = 'Save and View';
+$string['saveandedit'] = 'Save and Continue Editing';
 $string['selecttheme'] = 'Select Theme';
+$string['slide'] = 'Slide';
+$string['pluginadministration'] = 'Slideshow administration';
+$string['pluginname'] = 'Slideshow';
