@@ -87,7 +87,7 @@ function slideshow_update_instance($slideshow) {
  * @return bool
  */
 function slideshow_delete_instance($id) {
-    global $DB;
+    global $CFG, $DB;
 
     if (! $slideshow = $DB->get_record("slideshow", array("id"=>$id))) {
         return false;
@@ -96,6 +96,10 @@ function slideshow_delete_instance($id) {
     $result = true;
 
     if (! $DB->delete_records("slideshow", array("id"=>$slideshow->id))) {
+        $result = false;
+    }
+
+    if (! unlink($CFG->dataroot.'/s5/'.$slideshow->id.'.html')) {
         $result = false;
     }
 
