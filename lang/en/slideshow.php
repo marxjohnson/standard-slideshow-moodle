@@ -24,6 +24,7 @@
  */
 
 $string['editslides'] = 'Edit Slides';
+$string['height'] = 'Display Height';
 $string['modulename'] = 'Slideshow';
 $string['modulenameplural'] = 'Slideshows';
 $string['saveandview'] = 'Save and View';
@@ -32,3 +33,4 @@ $string['selecttheme'] = 'Select Theme';
 $string['slide'] = 'Slide';
 $string['pluginadministration'] = 'Slideshow administration';
 $string['pluginname'] = 'Slideshow';
+$string['width'] = 'Display Width';

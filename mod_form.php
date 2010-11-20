@@ -36,6 +36,12 @@ class mod_slideshow_mod_form extends moodleform_mod {
 
         $mform->addElement('header', 'settings');
         $mform->addElement('text', 'name', get_string('name'));
+        $mform->addElement('text', 'width', get_string('width', 'slideshow'));
+        $mform->addElement('text', 'height', get_string('height', 'slideshow'));
+        $mform->setType('width', PARAM_INT);
+        $mform->setType('height', PARAM_INT);
+        $mform->setDefault('width', 640);
+        $mform->setDefault('height', 480);
 
         $list = scandir($CFG->dirroot.'/mod/slideshow/s5/ui');
         $themes = array();
@@ -43,8 +49,9 @@ class mod_slideshow_mod_form extends moodleform_mod {
             if (substr($filename, 0, 1) != '.') {
                 $themes[$filename] = $filename;
             }
-        }
+        }        
         $mform->addElement('select', 'theme', get_string('selecttheme', 'slideshow'), $themes);
+
         
         $this->standard_coursemodule_elements();
 

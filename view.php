@@ -54,14 +54,14 @@ if ($id) {
         print_error('invalidcoursemodule');
     }
 }
-$context = get_context_instance(CONTEXT_MODULE, $slideshow->id);
+$context = get_context_instance(CONTEXT_MODULE, $cm->id);
 require_login($course, true, $cm);
 require_capability('mod/slideshow:view', $context);
 
 echo $OUTPUT->header();
 
 $url = new moodle_url('/mod/slideshow/display.php', array('id' => $cm->id));
-$html = html_writer::tag('iframe', '', array('src' => $url->out()));
+$html = html_writer::tag('iframe', '', array('src' => $url->out(), 'width' => $slideshow->width, 'height' => $slideshow->height));
 echo $html;
 if (has_capability('mod/slideshow:edit', $context)) {
     $url = new moodle_url('/mod/slideshow/edit.php', array('id' => $cm->id));
