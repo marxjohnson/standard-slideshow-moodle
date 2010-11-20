@@ -24,9 +24,11 @@
  */
 
 $string['editslides'] = 'Edit Slides';
+$string['fullscreen'] = 'Display Full Screen';
 $string['height'] = 'Display Height';
 $string['modulename'] = 'Slideshow';
 $string['modulenameplural'] = 'Slideshows';
+$string['newwindow'] = '(Opens a new Window or Tab)';
 $string['saveandview'] = 'Save and View';
 $string['saveandedit'] = 'Save and Continue Editing';
 $string['selecttheme'] = 'Select Theme';

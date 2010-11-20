@@ -60,12 +60,13 @@ require_capability('mod/slideshow:view', $context);
 
 echo $OUTPUT->header();
 
-$url = new moodle_url('/mod/slideshow/display.php', array('id' => $cm->id));
-$html = html_writer::tag('iframe', '', array('src' => $url->out(), 'width' => $slideshow->width, 'height' => $slideshow->height));
+$displayurl = new moodle_url('/mod/slideshow/display.php', array('id' => $cm->id));
+$html = html_writer::tag('iframe', '', array('src' => $displayurl->out(), 'width' => $slideshow->width, 'height' => $slideshow->height));
 echo $html;
 if (has_capability('mod/slideshow:edit', $context)) {
-    $url = new moodle_url('/mod/slideshow/edit.php', array('id' => $cm->id));
-    echo $OUTPUT->single_button($url, get_string('editslides', 'slideshow'), 'get');
+    $editurl = new moodle_url('/mod/slideshow/edit.php', array('id' => $cm->id));
+    echo $OUTPUT->single_button($editurl, get_string('editslides', 'slideshow'), 'get');
 }
-
+$link = html_writer::tag('a', get_string('fullscreen', 'slideshow'), array('href' => $displayurl->out(), 'target' => '_blank'));
+echo html_writer::tag('p', $link.' '.get_string('newwindow', 'slideshow'));
 echo $OUTPUT->footer($course);
