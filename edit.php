@@ -131,7 +131,10 @@ for ($i = 0; $i < $slides->length; $i++) {
         $url = new moodle_url('/mod/slideshow/edit.php', array('id' => $cm->id, 'slide' => $i));
         $link = html_writer::tag('a', get_string('slide', 'slideshow').' '.$i, array('href' => $url->out(false)));
     }
-    $li = html_writer::tag('li', $link);
+    $delurl = new moodle_url('/mod/slideshow/delete_slide.php', array('id' => $cm->id, 'slide' => $i));
+    $delicon = html_writer::empty_tag('img', array('src' => $OUTPUT->pix_url('t/delete'), 'alt' => get_string('deleteslide', 'slideshow'), 'title' => get_string('deleteslide', 'slideshow')));
+    $dellink = html_writer::tag('a', $delicon, array('href' => $delurl->out(false)));
+    $li = html_writer::tag('li', $link.' '.$dellink);
     $slidelist .= $li;
 }
 

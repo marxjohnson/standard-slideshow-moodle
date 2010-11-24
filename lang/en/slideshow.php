@@ -23,9 +23,13 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['deleteslide'] = 'Delete Slide';
+$string['deleteconfirm'] = 'Are you sure you want to delete slide {$a} and its contents? This cannot be undone!';
 $string['editslides'] = 'Edit Slides';
 $string['fullscreen'] = 'Display Full Screen';
 $string['height'] = 'Display Height';
+$string['invalidslide'] = 'The slide specified does not exist.';
+$string['lastslide'] = 'This is the last slide - it cannot be deleted.';
 $string['modulename'] = 'Slideshow';
 $string['modulenameplural'] = 'Slideshows';
 $string['newwindow'] = '(Opens a new Window or Tab)';

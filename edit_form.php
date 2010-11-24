@@ -40,8 +40,5 @@ class slide_edit_form extends moodleform {
         $mform->addGroup($buttongroup, 'submits', '&nbsp;');
     }
 
-    public function process($data) {
-        
-    }
 }
 ?>
