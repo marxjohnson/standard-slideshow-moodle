@@ -39,4 +39,5 @@ $string['selecttheme'] = 'Select Theme';
 $string['slide'] = 'Slide';
 $string['pluginadministration'] = 'Slideshow administration';
 $string['pluginname'] = 'Slideshow';
+$string['preview'] = 'Preview';
 $string['width'] = 'Display Width';

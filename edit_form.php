@@ -27,13 +27,20 @@ require_once($CFG->libdir.'/formslib.php');
 
 class slide_edit_form extends moodleform {
     public function definition() {
+        global $id, $slideshow, $slide;
         $mform = $this->_form;
 
         $mform->addElement('hidden', 'id');
         $mform->addElement('hidden', 'slide');
         $mform->addElement('header', 'editslide', get_string('editslides', 'slideshow'));
         $mform->addElement('htmleditor', 'slidehtml', get_string('slide', 'slideshow'));
-
+        if ($slide > 0) {
+            $previewslide = 1;
+        } else {
+            $previewslide = $slide;
+        }
+        $previewurl = new moodle_url('/mod/slideshow/preview.php#slide'.$previewslide, array('id' => $id, 'slide' => $slide));
+        $mform->addElement('static', 'preview', get_string('preview', 'slideshow'), html_writer::tag('iframe', '', array('src' => $previewurl->out(false), 'height' => $slideshow->height*0.75, 'width' => $slideshow->width*0.75)));
         $buttongroup = array();
         $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandedit', 'slideshow'));
         $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandview', 'slideshow'));
