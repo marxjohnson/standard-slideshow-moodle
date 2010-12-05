@@ -55,9 +55,24 @@
     <p>Standard is a tool for creating and editing slideshows using the Simple Standards-based Slideshow System (s5).  The Moodle plugin provides a Standard Slideshow resource type for Moodle, with a web-based editor.</p><h2>Dependencies</h2>
 <p>Moodle 2.0+</p>
 <h2>Install</h2>
-<p>Download the latest release from this page and upload it to /mod/ in your Moodle 2 installation.  Visit /admin.php to complete the installation.
+<p>Download the Zip or Tar from this page and upload all the files to it to /mod/standardslideshow/ in your Moodle 2 installation.  Your folder structure should look like this:
+<pre>/
+|-admin/
+|-auth/
+|-...
+|-mod/|-assignment/
+|-... |-chat/
+...   |-...
+      |-scorm/
+      |-standardslideshow/|-db/
+      |-survey/           |-lang/
+      ...                 |-pix/
+                          |-s5/
+                          ...
+</pre>
+Visit /admin.php to complete the installation.</p>
 
-Additional s5 themes can be uploaded to /mod/standardslideshow/s5/ui/. They should contain the files specified in the <a href="http://meyerweb.com/eric/tools/s5/filemap.html">s5 File Map</a></p>
+<p>Additional s5 themes can be uploaded to /mod/standardslideshow/s5/ui/. They should contain the files specified in the <a href="http://meyerweb.com/eric/tools/s5/filemap.html">s5 File Map</a></p>
 <h2>License</h2>
 <p>GNU GPL Version 3 or above.</p>
 <h2>Authors</h2>
