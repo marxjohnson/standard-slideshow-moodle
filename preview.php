@@ -18,7 +18,7 @@
  * Generates a single-frame slideshow page to preview the specified slide.
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,8 +31,8 @@ $slide = optional_param('slide', 0, PARAM_CLEAN);     // Slide number
 
 
 if ($id) {
-    $PAGE->set_url('/mod/slideshow/edit.php', array('id'=>$id));
-    if (! $cm = get_coursemodule_from_id('slideshow', $id)) {
+    $PAGE->set_url('/mod/standardslideshow/edit.php', array('id'=>$id));
+    if (! $cm = get_coursemodule_from_id('standardslideshow', $id)) {
         print_error('invalidcoursemodule');
     }
 
@@ -40,19 +40,19 @@ if ($id) {
         print_error('coursemisconf');
     }
 
-    if (! $slideshow = $DB->get_record("slideshow", array("id"=>$cm->instance))) {
+    if (! $slideshow = $DB->get_record("standardslideshow", array("id"=>$cm->instance))) {
         print_error('invalidcoursemodule');
     }
 
 } else {
-    $PAGE->set_url('/mod/slideshow/edit.php', array('l'=>$l));
-    if (! $slideshow = $DB->get_record("slideshow", array("id"=>$l))) {
+    $PAGE->set_url('/mod/standardslideshow/edit.php', array('l'=>$l));
+    if (! $slideshow = $DB->get_record("standardslideshow", array("id"=>$l))) {
         print_error('invalidcoursemodule');
     }
     if (! $course = $DB->get_record("course", array("id"=>$slideshow->course)) ){
         print_error('coursemisconf');
     }
-    if (! $cm = get_coursemodule_from_instance("slideshow", $slideshow->id, $course->id)) {
+    if (! $cm = get_coursemodule_from_instance("standardslideshow", $slideshow->id, $course->id)) {
         print_error('invalidcoursemodule');
     }
 }
@@ -60,7 +60,7 @@ if ($id) {
 require_login($course);
 
 $context = get_context_instance(CONTEXT_MODULE, $cm->id);
-require_capability('mod/slideshow:edit', $context);
+require_capability('mod/standardslideshow:edit', $context);
 
 $dom = new DOMDocument();
 $dom->loadHTMLFile($CFG->dataroot.'/s5/'.$slideshow->id.'.html');
@@ -99,12 +99,12 @@ echo <<< EOT
 <meta name="defaultView" content="slideshow" />
 <meta name="controlVis" content="hidden" />
 <!-- style sheet links -->
-<link rel="stylesheet" href="$CFG->wwwroot/mod/slideshow/s5/ui/$slideshow->theme/slides.css" type="text/css" media="projection" id="slideProj" />
-<link rel="stylesheet" href="$CFG->wwwroot/mod/slideshow/s5/ui/$slideshow->theme/outline.css" type="text/css" media="screen" id="outlineStyle" />
-<link rel="stylesheet" href="$CFG->wwwroot/mod/slideshow/s5/ui/$slideshow->theme/print.css" type="text/css" media="print" id="slidePrint" />
-<link rel="stylesheet" href="$CFG->wwwroot/mod/slideshow/s5/ui/$slideshow->theme/opera.css" type="text/css" media="projection" id="operaFix" />
+<link rel="stylesheet" href="$CFG->wwwroot/mod/standardslideshow/s5/ui/$slideshow->theme/slides.css" type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="$CFG->wwwroot/mod/standardslideshow/s5/ui/$slideshow->theme/outline.css" type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="$CFG->wwwroot/mod/standardslideshow/s5/ui/$slideshow->theme/print.css" type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="$CFG->wwwroot/mod/standardslideshow/s5/ui/$slideshow->theme/opera.css" type="text/css" media="projection" id="operaFix" />
 <!-- S5 JS -->
-<script src="$CFG->wwwroot/mod/slideshow/s5/ui/$slideshow->theme/slides.js" type="text/javascript"></script>
+<script src="$CFG->wwwroot/mod/standardslideshow/s5/ui/$slideshow->theme/slides.js" type="text/javascript"></script>
 </head>
 <body>
 

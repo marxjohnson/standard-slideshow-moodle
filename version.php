@@ -18,7 +18,7 @@
  * Defines version number of slideshow
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

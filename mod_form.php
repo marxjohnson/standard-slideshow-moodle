@@ -18,7 +18,7 @@
  * Defines the form for creating an instance of slideshow
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 
-class mod_slideshow_mod_form extends moodleform_mod {
+class mod_standardslideshow_mod_form extends moodleform_mod {
 
     function definition() {
         global $CFG;
@@ -36,21 +36,21 @@ class mod_slideshow_mod_form extends moodleform_mod {
 
         $mform->addElement('header', 'settings');
         $mform->addElement('text', 'name', get_string('name'));
-        $mform->addElement('text', 'width', get_string('width', 'slideshow'));
-        $mform->addElement('text', 'height', get_string('height', 'slideshow'));
+        $mform->addElement('text', 'width', get_string('width', 'standardslideshow'));
+        $mform->addElement('text', 'height', get_string('height', 'standardslideshow'));
         $mform->setType('width', PARAM_INT);
         $mform->setType('height', PARAM_INT);
         $mform->setDefault('width', 640);
         $mform->setDefault('height', 480);
 
-        $list = scandir($CFG->dirroot.'/mod/slideshow/s5/ui');
+        $list = scandir($CFG->dirroot.'/mod/standardslideshow/s5/ui');
         $themes = array();
         foreach($list as $filename) {
             if (substr($filename, 0, 1) != '.') {
                 $themes[$filename] = $filename;
             }
         }        
-        $mform->addElement('select', 'theme', get_string('selecttheme', 'slideshow'), $themes);
+        $mform->addElement('select', 'theme', get_string('selecttheme', 'standardslideshow'), $themes);
 
         
         $this->standard_coursemodule_elements();

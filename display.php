@@ -18,7 +18,7 @@
  * Fetches the contents of the slideshow HTML file to be displayed in an iframe
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +27,7 @@ require_once('../../config.php');
 
 $id = required_param('id', PARAM_INT);
 
-if (! $cm = get_coursemodule_from_id('slideshow', $id)) {
+if (! $cm = get_coursemodule_from_id('standardslideshow', $id)) {
     print_error('invalidcoursemodule');
 }
 
@@ -35,7 +35,7 @@ if (! $course = $DB->get_record("course", array("id"=>$cm->course))) {
     print_error('coursemisconf');
 }
 
-if (! $slideshow = $DB->get_record("slideshow", array("id"=>$cm->instance))) {
+if (! $slideshow = $DB->get_record("standardslideshow", array("id"=>$cm->instance))) {
     print_error('invalidcoursemodule');
 }
 

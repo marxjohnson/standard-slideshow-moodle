@@ -19,7 +19,7 @@
  * Library of functions and constants for module label
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,7 +29,7 @@ require_once("lib.php");
 
 $id = required_param('id',PARAM_INT);   // course
 
-$PAGE->set_url('/mod/slideshow/index.php', array('id'=>$id));
+$PAGE->set_url('/mod/standardslideshow/index.php', array('id'=>$id));
 
 redirect("$CFG->wwwroot/course/view.php?id=$id");
  

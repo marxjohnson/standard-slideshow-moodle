@@ -19,7 +19,7 @@
  * Library of functions and constants for module slideshow
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -34,16 +34,16 @@
  * @param object $slideshow
  * @return bool|int
  */
-function slideshow_add_instance($slideshow) {
+function standardslideshow_add_instance($slideshow) {
     global $DB, $CFG, $USER;
 
-    $slideshow->id = $DB->insert_record('slideshow', $slideshow);
+    $slideshow->id = $DB->insert_record('standardslideshow', $slideshow);
     $success = $slideshow->id;
     if (!file_exists($CFG->dataroot.'/s5')) {
         mkdir($CFG->dataroot.'/s5');
     }
     if (!file_exists($CFG->dataroot.'/s5/'.$slideshow->id.'.html')) {
-        $template = file_get_contents($CFG->dirroot.'/mod/slideshow/s5/s5-template.html');
+        $template = file_get_contents($CFG->dirroot.'/mod/standardslideshow/s5/s5-template.html');
         $skeleton = str_replace('{name}', $slideshow->name, 
                     str_replace('{fullname}', fullname($USER),
                     str_replace('{theme}', $slideshow->theme,
@@ -69,12 +69,12 @@ function slideshow_add_instance($slideshow) {
  * @param object $slideshow
  * @return bool
  */
-function slideshow_update_instance($slideshow) {
+function standardslideshow_update_instance($slideshow) {
     global $DB;
 
     $slideshow->id = $slideshow->instance;
 
-    return $DB->update_record("slideshow", $slideshow);
+    return $DB->update_record("standardslideshow", $slideshow);
 }
 
 /**
@@ -86,16 +86,16 @@ function slideshow_update_instance($slideshow) {
  * @param int $id
  * @return bool
  */
-function slideshow_delete_instance($id) {
+function standardslideshow_delete_instance($id) {
     global $CFG, $DB;
 
-    if (! $slideshow = $DB->get_record("slideshow", array("id"=>$id))) {
+    if (! $slideshow = $DB->get_record("standardslideshow", array("id"=>$id))) {
         return false;
     }
 
     $result = true;
 
-    if (! $DB->delete_records("slideshow", array("id"=>$slideshow->id))) {
+    if (! $DB->delete_records("standardslideshow", array("id"=>$slideshow->id))) {
         $result = false;
     }
 
@@ -112,7 +112,7 @@ function slideshow_delete_instance($id) {
  *
  * @param int $slideshowid
  */
-function slideshow_get_participants($slideshowid) {
+function standardslideshow_get_participants($slideshowid) {
 
     return false;
 }
@@ -127,18 +127,18 @@ function slideshow_get_participants($slideshowid) {
  * @param object $coursemodule
  * @return object|null
  */
-function slideshow_get_coursemodule_info($coursemodule) {
+function standardslideshow_get_coursemodule_info($coursemodule) {
     global $DB;
 
-    if ($slideshow = $DB->get_record('slideshow', array('id'=>$coursemodule->instance), 'id, name, intro, introformat')) {
+    if ($slideshow = $DB->get_record('standardslideshow', array('id'=>$coursemodule->instance), 'id, name, intro, introformat')) {
         if (empty($slideshow->name)) {
             // slideshow name missing, fix it
             $slideshow->name = "slideshow{$slideshow->id}";
-            $DB->set_field('slideshow', 'name', $slideshow->name, array('id'=>$slideshow->id));
+            $DB->set_field('standardslideshow', 'name', $slideshow->name, array('id'=>$slideshow->id));
         }
         $info = new stdClass();
         // no filtering hre because this info is cached and filtered later
-        $info->extra = format_module_intro('slideshow', $slideshow, $coursemodule->id, false);
+        $info->extra = format_module_intro('standardslideshow', $slideshow, $coursemodule->id, false);
         $info->name  = $slideshow->name;
         return $info;
     } else {
@@ -149,14 +149,14 @@ function slideshow_get_coursemodule_info($coursemodule) {
 /**
  * @return array
  */
-function slideshow_get_view_actions() {
+function standardslideshow_get_view_actions() {
     return array();
 }
 
 /**
  * @return array
  */
-function slideshow_get_post_actions() {
+function standardslideshow_get_post_actions() {
     return array();
 }
 
@@ -166,7 +166,7 @@ function slideshow_get_post_actions() {
  * @param object $data the data submitted from the reset course.
  * @return array status array
  */
-function slideshow_reset_userdata($data) {
+function standardslideshow_reset_userdata($data) {
     return array();
 }
 
@@ -175,7 +175,7 @@ function slideshow_reset_userdata($data) {
  *
  * @return array
  */
-function slideshow_get_extra_capabilities() {
+function standardslideshow_get_extra_capabilities() {
     return array();
 }
 
@@ -191,7 +191,7 @@ function slideshow_get_extra_capabilities() {
  * @param string $feature FEATURE_xx constant for requested feature
  * @return bool|null True if module supports feature, false if not, null if doesn't know
  */
-function slideshow_supports($feature) {
+function standardslideshow_supports($feature) {
     switch($feature) {
         case FEATURE_IDNUMBER:                return false;
         case FEATURE_GROUPS:                  return false;

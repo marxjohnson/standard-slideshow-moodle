@@ -18,7 +18,7 @@
  * Defines the form for editing slides
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -32,18 +32,18 @@ class slide_edit_form extends moodleform {
 
         $mform->addElement('hidden', 'id');
         $mform->addElement('hidden', 'slide');
-        $mform->addElement('header', 'editslide', get_string('editslides', 'slideshow'));
-        $mform->addElement('htmleditor', 'slidehtml', get_string('slide', 'slideshow'));
+        $mform->addElement('header', 'editslide', get_string('editslides', 'standardslideshow'));
+        $mform->addElement('htmleditor', 'slidehtml', get_string('slide', 'standardslideshow'));
         if ($slide > 0) {
             $previewslide = 1;
         } else {
             $previewslide = $slide;
         }
-        $previewurl = new moodle_url('/mod/slideshow/preview.php#slide'.$previewslide, array('id' => $id, 'slide' => $slide));
-        $mform->addElement('static', 'preview', get_string('preview', 'slideshow'), html_writer::tag('iframe', '', array('src' => $previewurl->out(false), 'height' => $slideshow->height*0.75, 'width' => $slideshow->width*0.75)));
+        $previewurl = new moodle_url('/mod/standardslideshow/preview.php#slide'.$previewslide, array('id' => $id, 'slide' => $slide));
+        $mform->addElement('static', 'preview', get_string('preview', 'standardslideshow'), html_writer::tag('iframe', '', array('src' => $previewurl->out(false), 'height' => $slideshow->height*0.75, 'width' => $slideshow->width*0.75)));
         $buttongroup = array();
-        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandedit', 'slideshow'));
-        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandview', 'slideshow'));
+        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandedit', 'standardslideshow'));
+        $buttongroup[] = $mform->createElement('submit', 'submit', get_string('saveandview', 'standardslideshow'));
         $mform->addGroup($buttongroup, 'submits', '&nbsp;');
     }
 

@@ -18,7 +18,7 @@
  * Lang strings for slideshow module
  *
  * @package    mod
- * @subpackage slieshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -30,8 +30,8 @@ $string['fullscreen'] = 'Display Full Screen';
 $string['height'] = 'Display Height';
 $string['invalidslide'] = 'The slide specified does not exist.';
 $string['lastslide'] = 'This is the last slide - it cannot be deleted.';
-$string['modulename'] = 'Slideshow';
-$string['modulenameplural'] = 'Slideshows';
+$string['modulename'] = 'Standard Slideshow';
+$string['modulenameplural'] = 'Standard Slideshows';
 $string['newwindow'] = '(Opens a new Window or Tab)';
 $string['saveandview'] = 'Save and View';
 $string['saveandedit'] = 'Save and Continue Editing';

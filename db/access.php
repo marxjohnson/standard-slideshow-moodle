@@ -19,7 +19,7 @@
  * Defines capabilites for slideshow module
  *
  * @package    mod
- * @subpackage slideshow
+ * @subpackage standardslideshow
  * @copyright  2010 onwards Mark Johnson  {@link http://barrenfrozenwasteland.com}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 $capabilities = array(
-    'mod/slideshow:view' => array(
+    'mod/standardslideshow:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
@@ -38,7 +38,7 @@ $capabilities = array(
             'manager' => CAP_ALLOW
         )
     ),
-     'mod/slideshow:edit' => array(
+     'mod/standardslideshow:edit' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
